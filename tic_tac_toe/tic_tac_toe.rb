@@ -5,6 +5,7 @@ class Game
 		puts "Tic-Tac-Toe!"
 		get_players
 		show_board(@sample_board)
+		gets
 		show_board(@board)
 		player_turn
 	end
@@ -51,6 +52,7 @@ class Game
 
 		print "#{@current_p}, please enter a square to place your #{@s}: "
 		response = gets.chomp
+		system("clear")
 		evaluate_response(response)
 		return nil
 	end
@@ -86,6 +88,7 @@ class Game
 			show_board(@board)
 		else
 			puts "That square is already taken."
+			show_board(@board)
 			get_move
 		end
 		return nil

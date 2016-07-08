@@ -243,6 +243,26 @@ class BinaryTree
 
 	end
 
-	def dfs_rec(value)
+	def dfs_rec(value, node = @root)
+		return node if node.value == value
+
+		left_search = dfs_rec(value, node.left_child) unless node.left_child.nil?
+		right_search = dfs_rec(value, node.right_child) unless node.right_child.nil?
+
+		if left_search.nil?
+			if right_search.nil?
+				search = nil
+			else
+				search = right_search
+			end
+		else
+			search = left_search
+		end
+
+		if node != @root
+			return search
+		else node = @root
+			puts search.nil? ? "#{value} not found" : "Found #{value} at node #{search.index} (#{search.coordinates})"
+		end
 	end
 end
